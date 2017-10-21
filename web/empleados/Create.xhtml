@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadosCreateDlg" widgetVar="EmpleadosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEmpleadosTitle}">
+            <h:form id="EmpleadosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_empleadoid}" for="empleadoid" />
+                        <p:inputText id="empleadoid" value="#{empleadosController.selected.empleadoid}" title="#{bundle.CreateEmpleadosTitle_empleadoid}" required="true" requiredMessage="#{bundle.CreateEmpleadosRequiredMessage_empleadoid}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{empleadosController.selected.cedula}" title="#{bundle.CreateEmpleadosTitle_cedula}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_fecnac}" for="fecnac" />
+                        <p:inputText id="fecnac" value="#{empleadosController.selected.fecnac}" title="#{bundle.CreateEmpleadosTitle_fecnac}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_cargo}" for="cargo" />
+                        <p:inputText id="cargo" value="#{empleadosController.selected.cargo}" title="#{bundle.CreateEmpleadosTitle_cargo}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_genero}" for="genero" />
+                        <p:inputText id="genero" value="#{empleadosController.selected.genero}" title="#{bundle.CreateEmpleadosTitle_genero}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{empleadosController.create}" value="#{bundle.Save}" update="display,:EmpleadosListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmpleadosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmpleadosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

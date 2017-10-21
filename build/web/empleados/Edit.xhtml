@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadosEditDlg" widgetVar="EmpleadosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEmpleadosTitle}">
+            <h:form id="EmpleadosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEmpleadosLabel_empleadoid}" for="empleadoid" />
+                        <p:inputText id="empleadoid" value="#{empleadosController.selected.empleadoid}" title="#{bundle.EditEmpleadosTitle_empleadoid}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_empleadoid}"/>
+                        <p:outputLabel value="#{bundle.EditEmpleadosLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{empleadosController.selected.cedula}" title="#{bundle.EditEmpleadosTitle_cedula}" />
+                        <p:outputLabel value="#{bundle.EditEmpleadosLabel_fecnac}" for="fecnac" />
+                        <p:inputText id="fecnac" value="#{empleadosController.selected.fecnac}" title="#{bundle.EditEmpleadosTitle_fecnac}" />
+                        <p:outputLabel value="#{bundle.EditEmpleadosLabel_cargo}" for="cargo" />
+                        <p:inputText id="cargo" value="#{empleadosController.selected.cargo}" title="#{bundle.EditEmpleadosTitle_cargo}" />
+                        <p:outputLabel value="#{bundle.EditEmpleadosLabel_genero}" for="genero" />
+                        <p:inputText id="genero" value="#{empleadosController.selected.genero}" title="#{bundle.EditEmpleadosTitle_genero}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{empleadosController.update}" value="#{bundle.Save}" update="display,:EmpleadosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EmpleadosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmpleadosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

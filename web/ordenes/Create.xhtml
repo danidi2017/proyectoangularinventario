@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenesCreateDlg" widgetVar="OrdenesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateOrdenesTitle}">
+            <h:form id="OrdenesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordenesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateOrdenesLabel_ordenesid}" for="ordenesid" />
+                        <p:inputText id="ordenesid" value="#{ordenesController.selected.ordenesid}" title="#{bundle.CreateOrdenesTitle_ordenesid}" required="true" requiredMessage="#{bundle.CreateOrdenesRequiredMessage_ordenesid}"/>
+                        <p:outputLabel value="#{bundle.CreateOrdenesLabel_fecha}" for="fecha" />
+                        <p:inputText id="fecha" value="#{ordenesController.selected.fecha}" title="#{bundle.CreateOrdenesTitle_fecha}" />
+                        <p:outputLabel value="#{bundle.CreateOrdenesLabel_proveedor}" for="proveedor" />
+                        <p:inputText id="proveedor" value="#{ordenesController.selected.proveedor}" title="#{bundle.CreateOrdenesTitle_proveedor}" />
+                        <p:outputLabel value="#{bundle.CreateOrdenesLabel_cliente}" for="cliente" />
+                        <p:inputText id="cliente" value="#{ordenesController.selected.cliente}" title="#{bundle.CreateOrdenesTitle_cliente}" />
+                        <p:outputLabel value="#{bundle.CreateOrdenesLabel_producto}" for="producto" />
+                        <p:inputText id="producto" value="#{ordenesController.selected.producto}" title="#{bundle.CreateOrdenesTitle_producto}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ordenesController.create}" value="#{bundle.Save}" update="display,:OrdenesListForm:datalist,:growl" oncomplete="handleSubmit(args,'OrdenesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="OrdenesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

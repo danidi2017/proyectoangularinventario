@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProveedorEditDlg" widgetVar="ProveedorEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProveedorTitle}">
+            <h:form id="ProveedorEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditProveedorLabel_proveedorid}" for="proveedorid" />
+                        <p:inputText id="proveedorid" value="#{proveedorController.selected.proveedorid}" title="#{bundle.EditProveedorTitle_proveedorid}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_proveedorid}"/>
+                        <p:outputLabel value="#{bundle.EditProveedorLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{proveedorController.selected.nombre}" title="#{bundle.EditProveedorTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.EditProveedorLabel_contacto}" for="contacto" />
+                        <p:inputText id="contacto" value="#{proveedorController.selected.contacto}" title="#{bundle.EditProveedorTitle_contacto}" />
+                        <p:outputLabel value="#{bundle.EditProveedorLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{proveedorController.selected.codigo}" title="#{bundle.EditProveedorTitle_codigo}" />
+                        <p:outputLabel value="#{bundle.EditProveedorLabel_cargo}" for="cargo" />
+                        <p:inputText id="cargo" value="#{proveedorController.selected.cargo}" title="#{bundle.EditProveedorTitle_cargo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{proveedorController.update}" value="#{bundle.Save}" update="display,:ProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProveedorEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProveedorEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

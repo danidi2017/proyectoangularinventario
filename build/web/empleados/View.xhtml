@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadosViewDlg" widgetVar="EmpleadosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmpleadosTitle}">
+            <h:form id="EmpleadosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_empleadoid}"/>
+                        <h:outputText value="#{empleadosController.selected.empleadoid}" title="#{bundle.ViewEmpleadosTitle_empleadoid}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_cedula}"/>
+                        <h:outputText value="#{empleadosController.selected.cedula}" title="#{bundle.ViewEmpleadosTitle_cedula}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_fecnac}"/>
+                        <h:outputText value="#{empleadosController.selected.fecnac}" title="#{bundle.ViewEmpleadosTitle_fecnac}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_cargo}"/>
+                        <h:outputText value="#{empleadosController.selected.cargo}" title="#{bundle.ViewEmpleadosTitle_cargo}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_genero}"/>
+                        <h:outputText value="#{empleadosController.selected.genero}" title="#{bundle.ViewEmpleadosTitle_genero}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmpleadosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
